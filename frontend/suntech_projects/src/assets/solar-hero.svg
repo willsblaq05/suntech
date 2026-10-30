@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" fill="none">
+  <defs>
+    <linearGradient id="sky" x1="960" y1="0" x2="960" y2="1080" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f2c43a"/>
+      <stop offset=".48" stop-color="#df9c38"/>
+      <stop offset="1" stop-color="#0b3523"/>
+    </linearGradient>
+    <linearGradient id="ground" x1="960" y1="600" x2="960" y2="1080" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#17573b"/>
+      <stop offset="1" stop-color="#06281a"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="650" y1="610" x2="1270" y2="920" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#315f67"/>
+      <stop offset="1" stop-color="#102c3a"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0" cy="0" r="1" gradientTransform="matrix(0 320 -320 0 1410 280)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff5c4" stop-opacity=".85"/>
+      <stop offset="1" stop-color="#ffd55c" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <path fill="url(#sky)" d="M0 0h1920v1080H0z"/>
+  <circle cx="1410" cy="280" r="320" fill="url(#sun)"/>
+  <circle cx="1410" cy="280" r="94" fill="#ffe89a"/>
+  <path fill="#d88b35" fill-opacity=".4" d="M0 575c222-76 406-42 608 7 211 51 388 64 603-7 230-75 463-74 709 12v493H0V575Z"/>
+  <path fill="url(#ground)" d="M0 671c208-55 383-45 584 6 213 54 432 75 659 3 250-80 448-84 677-13v413H0V671Z"/>
+  <path fill="#0b3523" fill-opacity=".85" d="m0 849 274-93 244 60 286-111 287 98 304-107 260 92 265-65v357H0V849Z"/>
+  <g opacity=".95">
+    <path fill="#091f2c" d="m411 632 837-8 420 252-891 22-366-266Z"/>
+    <path fill="url(#panel)" stroke="#d7e3d4" stroke-opacity=".72" stroke-width="8" d="m450 606 770-3 359 213-832 17-297-227Z"/>
+    <path stroke="#b8d5d0" stroke-opacity=".7" stroke-width="7" d="m713 605 294 223m-60-224 287 222M558 604l290 226m-347-93 1030-8m-953 63 1026-11"/>
+    <path stroke="#d7e3d4" stroke-opacity=".62" stroke-width="9" d="m657 830-60 133m686-146 78 132M820 837l-18 126m309-131 34 130"/>
+  </g>
+  <g fill="#06281a" fill-opacity=".9">
+    <path d="M171 770h18v228h-18zm75 22h12v206h-12zm-122 37h15v169h-15z"/>
+    <path d="M90 842c2-56 31-96 67-96s61 40 63 96c-42 21-88 21-130 0Zm122 44c2-48 27-82 57-82s52 34 54 82c-36 18-75 18-111 0Z"/>
+    <path d="M1484 778h15v235h-15zm65 32h12v203h-12zm-99 35h13v168h-13z"/>
+    <path d="M1415 850c2-55 29-93 65-93s59 38 61 93c-40 20-85 20-126 0Zm119 46c2-46 26-79 54-79s50 33 52 79c-35 17-71 17-106 0Z"/>
+  </g>
+</svg>

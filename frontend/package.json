@@ -1,0 +1,14 @@
+{
+  "name": "suntech-frontend-workspace",
+  "private": true,
+  "workspaces": [
+    "suntech_projects"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace suntech_projects",
+    "build": "npm run build --workspace suntech_projects",
+    "lint": "npm run lint --workspace suntech_projects",
+    "test": "npm run test --workspace suntech_projects",
+    "preview": "npm run preview --workspace suntech_projects"
+  }
+}

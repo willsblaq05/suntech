@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+/*
+  SUNTECH PROJECTS brand tokens (Tailwind v4 CSS-first theme).
+  Applies as utilities: bg-forest-900, text-gold-300, bg-sand-100, etc.
+*/
+@theme {
+  /* Deep forest green — primary brand colour */
+  --color-forest-950: #06281a;
+  --color-forest-900: #0b3523;
+  --color-forest-800: #11462f;
+  --color-forest-700: #17573b;
+  --color-forest-600: #1f6a4a;
+  --color-forest-100: #e4efe7;
+
+  /* Solar gold — CTAs and accents only */
+  --color-gold-300: #ffd55c;
+  --color-gold-400: #f2c43a;
+  --color-gold-500: #e0ae28;
+
+  /* Warm light neutrals */
+  --color-sand-100: #faf8f4;
+  --color-sand-200: #f0ebe1;
+
+  /* Text */
+  --color-ink-900: #1f1d18;
+  --color-ink-600: #55524b;
+
+  /* Motion */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  @apply bg-white text-ink-900 antialiased;
+}
+
+/* Consistent focus treatment for keyboard users */
+:where(a, button, input, select, textarea):focus-visible {
+  outline: 2px solid var(--color-gold-400);
+  outline-offset: 2px;
+}

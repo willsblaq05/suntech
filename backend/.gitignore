@@ -1,0 +1,38 @@
+# Python virtual environment
+.venv/
+
+# Poetry / Pipenv
+# poetry.lock
+# Pipfile.lock
+
+# Database
+*.db
+*.sqlite3
+
+# Uploads / Media
+uploads/
+
+# FastAPI / Uvicorn
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.cache/
+.hypothesis/
+/htmlcov/
+
+# Environment variables
+.env
+
+# Alembic
+migrations/
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
