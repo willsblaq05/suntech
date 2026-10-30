@@ -18,6 +18,12 @@ node_modules/
 frontend/**/node_modules/
 frontend/**/dist/
 
+# npm workspaces must keep a single lockfile (at frontend/). A nested
+# workspace lockfile causes npm to prune cross-platform optional
+# dependencies (rolldown/oxide bindings) when the root lock regenerates,
+# which breaks production builds (native binding not found).
+frontend/suntech_projects/package-lock.json
+
 # Local generated lockfile outside the frontend workspace
 /package-lock.json
 
