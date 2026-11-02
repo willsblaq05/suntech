@@ -1,6 +1,9 @@
 {
   "name": "suntech-frontend-workspace",
   "private": true,
+  "engines": {
+    "node": "^24.15.0"
+  },
   "workspaces": [
     "suntech_projects"
   ],

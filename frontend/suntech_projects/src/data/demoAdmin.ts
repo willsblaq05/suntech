@@ -1,0 +1,162 @@
+/**
+ * SAMPLE DATA FOR FRONTEND PREVIEWS ONLY.
+ *
+ * `demoAdmin.ts` is used exclusively when an operator opens the admin
+ * portal without a reachable backend and explicitly chooses the demo
+ * preview on the login page. Every person and inquiry below is fictional;
+ * the UI labels demo sessions with a permanent "Demo" banner so sample
+ * figures are never mistaken for live business data.
+ */
+
+import type { Lead } from "../types/admin";
+
+const DEMO_LEADS: Lead[] = [
+  {
+    id: "3f1c9e5a-7b2d-4c8e-9a01-2b3c4d5e6f70",
+    name: "Adamma Okafor",
+    email: "adamma.okafor@example.com",
+    phone: "+2348012345678",
+    user_type: "residential",
+    state: "Enugu",
+    city: "Independence Layout",
+    budget_range: "medium",
+    system_size_kw: 3.5,
+    status: "pending",
+    notes: null,
+    created_at: "2026-10-28T09:24:00Z",
+    updated_at: "2026-10-28T09:24:00Z",
+  },
+  {
+    id: "4a2b8d7c-1e3f-4a5b-8c9d-0e1f2a3b4c5d",
+    name: "Chidi Benson",
+    email: "chidi@bensonventures.example.com",
+    phone: "+2348023456789",
+    user_type: "commercial",
+    state: "Enugu",
+    city: "Ogui Road",
+    budget_range: "high",
+    system_size_kw: 25,
+    status: "contacted",
+    notes: "Called Tue — wants a walkthrough of the shop before quotation.",
+    created_at: "2026-10-27T14:02:00Z",
+    updated_at: "2026-10-28T08:15:00Z",
+  },
+  {
+    id: "5b3c7e6f-2a4b-4c5d-9e0f-1a2b3c4d5e6f",
+    name: "Ify Nnaji",
+    email: null,
+    phone: "08012345678",
+    user_type: "residential",
+    state: "Enugu",
+    city: "Trans Ekulu",
+    budget_range: "low",
+    system_size_kw: null,
+    status: "pending",
+    notes: null,
+    created_at: "2026-10-27T11:47:00Z",
+    updated_at: "2026-10-27T11:47:00Z",
+  },
+  {
+    id: "6c4d8f9a-3b5c-4d6e-8f1a-2b3c4d5e6f7a",
+    name: "Ngozi Eze",
+    email: "ngozi.eze@example.com",
+    phone: "+2348067891234",
+    user_type: "residential",
+    state: "Enugu",
+    city: "Uwani",
+    budget_range: "medium",
+    system_size_kw: 5,
+    status: "qualified",
+    notes: "Provider scheduled for site assessment on Saturday.",
+    created_at: "2026-10-24T16:30:00Z",
+    updated_at: "2026-10-26T10:05:00Z",
+  },
+  {
+    id: "7d5e9a0b-4c6d-4e7f-9a2b-3c4d5e6f7a8b",
+    name: "Emeka Nwosu",
+    email: "emeka@brightpathacademy.example.com",
+    phone: "+2348091234567",
+    user_type: "commercial",
+    state: "Enugu",
+    city: "Achara Layout",
+    budget_range: "high",
+    system_size_kw: 40,
+    status: "closed",
+    notes: "Handled by provider; installation completed 21 Oct.",
+    created_at: "2026-10-14T08:12:00Z",
+    updated_at: "2026-10-21T17:40:00Z",
+  },
+  {
+    id: "8e6f0a1c-5d7e-4f8a-8b3c-4d5e6f7a8b9c",
+    name: "Halima Sule",
+    email: null,
+    phone: "08054563218",
+    user_type: "residential",
+    state: "Enugu",
+    city: "Coal City Garden",
+    budget_range: null,
+    system_size_kw: null,
+    status: "pending",
+    notes: null,
+    created_at: "2026-10-29T07:55:00Z",
+    updated_at: "2026-10-29T07:55:00Z",
+  },
+  {
+    id: "9f7a1b2d-6e8f-4a9b-9c4d-5e6f7a8b9c0d",
+    name: "Fola Adeyemi",
+    email: "fola.adeyemi@example.com",
+    phone: "+2348076543210",
+    user_type: "residential",
+    state: "Enugu",
+    city: "Emene",
+    budget_range: "low",
+    system_size_kw: 2,
+    status: "contacted",
+    notes: null,
+    created_at: "2026-10-25T13:20:00Z",
+    updated_at: "2026-10-27T09:00:00Z",
+  },
+  {
+    id: "0a8b2c3e-7f9a-4b0c-8d5e-6f7a8b9c0d1e",
+    name: "Grace Achebe",
+    email: "grace@achebeguesthouse.example.com",
+    phone: "+2348034567890",
+    user_type: "commercial",
+    state: "Enugu",
+    city: "Library Road",
+    budget_range: "medium",
+    system_size_kw: 12,
+    status: "qualified",
+    notes: null,
+    created_at: "2026-10-22T10:08:00Z",
+    updated_at: "2026-10-24T12:00:00Z",
+  },
+  {
+    id: "1b9c3d4f-8a0b-4c1d-9e6f-7a8b9c0d1e2f",
+    name: "Tunde Bakare",
+    email: null,
+    phone: "08097734112",
+    user_type: "residential",
+    state: "Enugu",
+    city: null,
+    budget_range: "medium",
+    system_size_kw: null,
+    status: "closed",
+    notes: "Referred to provider 20 Oct; no further follow-up needed.",
+    created_at: "2026-10-12T15:44:00Z",
+    updated_at: "2026-10-20T11:10:00Z",
+  },
+];
+
+export function getDemoLeads(): Lead[] {
+  return DEMO_LEADS.map((lead) => ({ ...lead }));
+}
+
+export function getDemoLead(id: string): Lead | undefined {
+  return DEMO_LEADS.find((lead) => lead.id === id);
+}
+
+/** Demo status updates stay local — nothing is persisted anywhere. */
+export function withDemoStatus(lead: Lead, status: Lead["status"]): Lead {
+  return { ...lead, status, updated_at: new Date().toISOString() };
+}
