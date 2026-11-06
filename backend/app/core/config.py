@@ -1,3 +1,5 @@
+from typing import ClassVar
+
 from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -5,8 +7,14 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     """Application settings loaded from environment variables."""
 
-    # Database
-    POSTGRES_URL: str = "postgresql+psycopg://user:password@localhost:5432/suntech_db"
+    # Database. POSTGRES_URL is the canonical setting (Render deployment);
+    # DATABASE_URL is Neon-managed — written to the project-root .env.local
+    # by `neon deploy` and used as a fallback when POSTGRES_URL is default.
+    LOCAL_POSTGRES_DEFAULT: ClassVar[str] = (
+        "postgresql+psycopg://user:password@localhost:5432/suntech_db"
+    )
+    POSTGRES_URL: str = LOCAL_POSTGRES_DEFAULT
+    DATABASE_URL: str = ""
 
     # FastAPI
     DEBUG: bool = False
@@ -38,3 +46,20 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
+
+
+def get_database_url() -> str:
+    """Resolve the SQLAlchemy database URL.
+
+    POSTGRES_URL wins when it was explicitly configured (e.g. the Render
+    deployment); otherwise the Neon-provided DATABASE_URL fallback is used.
+    Plain ``postgresql://`` URLs (as supplied by Neon) are rewritten to the
+    SQLAlchemy psycopg (v3) driver scheme, so a Neon connection string
+    works as-is.
+    """
+    url = settings.POSTGRES_URL
+    if url == settings.LOCAL_POSTGRES_DEFAULT and settings.DATABASE_URL:
+        url = settings.DATABASE_URL
+    if url.startswith("postgresql://"):
+        url = url.replace("postgresql://", "postgresql+psycopg://", 1)
+    return url

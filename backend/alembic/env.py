@@ -24,11 +24,11 @@ if config.config_file_name is not None:
 
 # add your model's MetaData object here
 # for 'autogenerate' support
-from app.core.config import settings
+from app.core.config import get_database_url
 from app.models.lead import Lead
 from app.models.testimonial import Testimonial
 
-config.set_main_option("sqlalchemy.url", settings.POSTGRES_URL.replace("%", "%%"))
+config.set_main_option("sqlalchemy.url", get_database_url().replace("%", "%%"))
 target_metadata = Lead.metadata
 
 # other values from the config, defined by the needs of env.py,
