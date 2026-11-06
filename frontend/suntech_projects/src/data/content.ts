@@ -66,6 +66,8 @@ export interface Segment {
   title: string;
   body: string;
   ctaLabel: string;
+  /** Optional bullet details shown inside the card. */
+  points?: string[];
 }
 
 export const SEGMENTS: Segment[] = [
@@ -80,6 +82,20 @@ export const SEGMENTS: Segment[] = [
     title: "Commercial Solar",
     body: "For shops, offices, schools and other businesses: scalable installations designed around uptime and running costs. We connect you with providers experienced in commercial-scale projects.",
     ctaLabel: "Request a commercial quote",
+  },
+  {
+    id: "upgrade",
+    title: "Upgrade an Existing System",
+    body: "Already have solar? If the system is underperforming, undersized, or your needs have changed, we connect you with providers experienced in improving existing installations.",
+    points: [
+      "Increase solar capacity",
+      "Upgrade batteries",
+      "Improve backup duration",
+      "Replace or upgrade an inverter",
+      "Troubleshoot underperforming systems",
+      "Expand an existing installation",
+    ],
+    ctaLabel: "Request an upgrade quote",
   },
 ];
 
@@ -111,3 +127,35 @@ export const FINAL_CTA = {
   title: "Ready to talk solar for your property in Enugu?",
   body: "Request a quotation and we will connect you with a suitable installation provider. You can discuss your requirements — including your budget — directly with them.",
 };
+
+// ---------------------------------------------------------------------------
+// Testimonials
+// ---------------------------------------------------------------------------
+
+export interface Testimonial {
+  name: string;
+  location: string;
+  /** e.g. "Residential · 5 kW — battery upgrade" */
+  projectType: string;
+  quote: string;
+  /** Optional verified photograph of the customer or their project. */
+  photoUrl?: string;
+}
+
+/**
+ * Intentionally EMPTY until real, verified customer feedback exists.
+ * Do not add invented reviews — the public section renders a trust
+ * fallback while this list is empty.
+ */
+export const TESTIMONIALS: Testimonial[] = [];
+
+export const TESTIMONIALS_HEADING = "Trusted by People Who Choose Better Power";
+export const TESTIMONIALS_EYEBROW = "TESTIMONIALS";
+/** Temporary trust copy shown while TESTIMONIALS is empty. */
+export const TESTIMONIALS_PLACEHOLDER_LEAD =
+  "We would rather tell you exactly how we operate than invent reviews. Real customer feedback appears here as completed projects are verified.";
+export const TESTIMONIALS_PLACEHOLDER_POINTS: string[] = [
+  "Every quotation comes from the installation provider — numbers are never invented.",
+  "Customer feedback is published only after a project is completed and verified.",
+  "You discuss your requirements and budget directly with the provider.",
+];

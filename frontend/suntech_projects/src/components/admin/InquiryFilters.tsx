@@ -90,6 +90,7 @@ export function InquiryFilters({
           <option value="all">All types</option>
           <option value="residential">Residential</option>
           <option value="commercial">Commercial</option>
+          <option value="upgrade">Upgrade</option>
         </select>
       </div>
     </div>

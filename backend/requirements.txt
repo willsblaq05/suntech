@@ -13,6 +13,10 @@ python-multipart==0.0.32
 email-validator==2.3.0
 pydantic-settings==2.16.2
 
+# Image handling (testimonial photo upload)
+# 13.x is the first line with Python 3.14 wheels (this env runs 3.14).
+pillow==13.0.0
+
 # Migrations
 alembic==1.20.1
 

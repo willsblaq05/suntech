@@ -21,6 +21,13 @@ const SEGMENT_ICONS: Record<string, ReactNode> = {
       <path d="M6 12H4v8a2 2 0 0 0 2 2h2M18 9h2v11a2 2 0 0 1-2 2h-2" />
     </>
   ),
+  upgrade: (
+    // circular refresh arrows
+    <>
+      <path d="M21 12a9 9 0 1 1-2.64-6.36" />
+      <path d="M21 3v6h-6" />
+    </>
+  ),
 };
 
 function SegmentCard({ segment, index }: { segment: Segment; index: number }) {
@@ -48,9 +55,30 @@ function SegmentCard({ segment, index }: { segment: Segment; index: number }) {
           {segment.title}
         </h3>
         <p className="mt-3 flex-1 leading-relaxed text-ink-600">{segment.body}</p>
+        {segment.points && segment.points.length > 0 && (
+          <ul className="mt-4 space-y-2 border-t border-ink-900/10 pt-4">
+            {segment.points.map((point) => (
+              <li key={point} className="flex items-start gap-2 text-sm text-ink-900">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                  className="mt-0.5 h-3.5 w-3.5 shrink-0 text-forest-600"
+                >
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+                {point}
+              </li>
+            ))}
+          </ul>
+        )}
         <a
           href="#get-a-quote"
-          className="group mt-6 inline-flex items-center gap-2 text-sm font-semibold text-forest-700 transition-colors hover:text-forest-900"
+          className={`group mt-6 inline-flex items-center gap-2 text-sm font-semibold text-forest-700 transition-colors hover:text-forest-900 hover:underline`}
         >
           {segment.ctaLabel}
           <svg
@@ -85,7 +113,7 @@ export function SegmentCards() {
             description="Whether you are protecting a household or a business operation, we connect you with a provider suited to the scale of your project."
           />
         </Reveal>
-        <div className="mt-12 grid gap-6 md:grid-cols-2">
+        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {SEGMENTS.map((segment, index) => (
             <SegmentCard key={segment.id} segment={segment} index={index} />
           ))}

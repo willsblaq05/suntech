@@ -26,6 +26,7 @@ if config.config_file_name is not None:
 # for 'autogenerate' support
 from app.core.config import settings
 from app.models.lead import Lead
+from app.models.testimonial import Testimonial
 
 config.set_main_option("sqlalchemy.url", settings.POSTGRES_URL.replace("%", "%%"))
 target_metadata = Lead.metadata

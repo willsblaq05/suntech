@@ -3,14 +3,20 @@ from uuid import UUID, uuid4
 
 from datetime import datetime, timezone
 
+from sqlalchemy import JSON, Column
 from sqlmodel import Field, SQLModel
 
 
 class UserType(str, Enum):
-    """Accepted customer types for solar installation referrals."""
+    """Accepted customer types for solar installation referrals.
+
+    ``upgrade`` marks an inquiry about an existing system the customer wants
+    to improve — capacity, batteries, backup, inverter, or expansion.
+    """
 
     residential = "residential"
     commercial = "commercial"
+    upgrade = "upgrade"
 
 
 class LeadStatus(str, Enum):
@@ -77,6 +83,32 @@ class Lead(SQLModel, table=True):
         default=LeadStatus.pending,
         index=True,
         description="Current status of the lead",
+    )
+    # ---- Existing-system details (upgrade inquiries only) ------------------ #
+    improvement_goals: list[str] | None = Field(
+        default=None,
+        sa_column=Column(JSON, nullable=True),
+        description="Selected upgrade goals (values from app.schemas.lead.IMPROVEMENT_GOALS)",
+    )
+    existing_inverter_kw: float | None = Field(
+        default=None,
+        gt=0,
+        description="Inverter capacity of the existing system in kW, if known",
+    )
+    existing_battery_type: str | None = Field(
+        default=None,
+        max_length=40,
+        description="Battery chemistry of the existing system (lithium, agm, gel, or tubular); null = customer does not know",
+    )
+    existing_battery_capacity: str | None = Field(
+        default=None,
+        max_length=50,
+        description="Battery capacity of the existing system with units, e.g. '5 kWh' or '100 Ah'",
+    )
+    existing_system_notes: str | None = Field(
+        default=None,
+        max_length=1000,
+        description="Customer description of the current system or the problem they are seeing (required for upgrades)",
     )
     notes: str | None = Field(
         default=None,

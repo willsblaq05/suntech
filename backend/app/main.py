@@ -1,8 +1,10 @@
 import logging
+from pathlib import Path
 
 from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from sqlalchemy.exc import IntegrityError
 from starlette.responses import JSONResponse
 
@@ -87,3 +89,9 @@ def health() -> dict[str, str]:
 
 
 app.include_router(api_v1_router, prefix=settings.API_V1_STR)
+
+# Media — admin-uploaded testimonial photos, served at "/media/...". The
+# directory is created up front so the first upload never races the mount.
+_media_root = Path(settings.MEDIA_DIR)
+_media_root.mkdir(parents=True, exist_ok=True)
+app.mount("/media", StaticFiles(directory=_media_root), name="media")

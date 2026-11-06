@@ -26,6 +26,10 @@ class Settings(BaseSettings):
     # Rate limiting (public lead submission)
     RATE_LIMIT_LEAD_CREATE_PER_MINUTE: int = 10
 
+    # Media (admin-uploaded testimonial photos)
+    MEDIA_DIR: str = "media"
+    MAX_UPLOAD_MB: int = 5
+
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8",

@@ -27,6 +27,9 @@ frontend/suntech_projects/package-lock.json
 # Local generated lockfile outside the frontend workspace
 /package-lock.json
 
+# Uploaded media (testimonial photos) — lives on the server volume
+backend/media/
+
 # Editor and operating-system files
 .vscode/
 .idea/

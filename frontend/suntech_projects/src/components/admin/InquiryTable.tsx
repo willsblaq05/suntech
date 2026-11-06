@@ -43,7 +43,9 @@ export function InquiryTable({ leads }: { leads: Lead[] }) {
                   className={`inline-block rounded-md border px-2 py-0.5 text-xs font-medium ${
                     lead.user_type === "commercial"
                       ? "border-forest-300 bg-forest-100 text-forest-800"
-                      : "border-gold-400 bg-gold-300/25 text-forest-900"
+                      : lead.user_type === "upgrade"
+                        ? "border-sky-300 bg-sky-50 text-sky-900"
+                        : "border-gold-400 bg-gold-300/25 text-forest-900"
                   }`}
                 >
                   {USER_TYPE_LABELS[lead.user_type]}

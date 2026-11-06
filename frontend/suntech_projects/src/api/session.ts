@@ -59,6 +59,11 @@ export async function adminFetch(path: string, init?: RequestInit): Promise<Resp
   return response;
 }
 
+/** Builds the full URL for server-relative paths (media, API). */
+export function apiUrl(path: string): string {
+  return `${API_BASE_URL}${path}`;
+}
+
 /** Extracts the human-readable "detail" field FastAPI error responses carry. */
 export async function readErrorDetail(response: Response): Promise<string | null> {
   try {

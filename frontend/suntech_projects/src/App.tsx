@@ -8,12 +8,15 @@ import { Hero } from "./components/sections/Hero";
 import { TrustSection } from "./components/sections/TrustSection";
 import { SegmentCards } from "./components/sections/SegmentCards";
 import { HowItWorks } from "./components/sections/HowItWorks";
+import { TestimonialsSection } from "./components/sections/TestimonialsSection";
 import { FinalCta } from "./components/sections/FinalCta";
 import { AdminLogin } from "./pages/admin/AdminLogin";
 import { AdminLayout } from "./pages/admin/AdminLayout";
 import { AdminDashboard } from "./pages/admin/AdminDashboard";
 import { AdminInquiries } from "./pages/admin/AdminInquiries";
 import { AdminInquiryDetail } from "./pages/admin/AdminInquiryDetail";
+import { AdminTestimonials } from "./pages/admin/AdminTestimonials";
+import { LeadPopup } from "./components/ui/LeadPopup";
 
 const SKIP_LINK_CLASSES =
   "sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-forest-900 focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white";
@@ -32,9 +35,11 @@ function PublicSite() {
         <TrustSection />
         <SegmentCards />
         <HowItWorks />
+        <TestimonialsSection />
         <FinalCta />
       </main>
       <Footer />
+      <LeadPopup />
     </>
   );
 }
@@ -54,6 +59,7 @@ function App() {
               <Route path="dashboard" element={<AdminDashboard />} />
               <Route path="inquiries" element={<AdminInquiries />} />
               <Route path="inquiries/:id" element={<AdminInquiryDetail />} />
+              <Route path="testimonials" element={<AdminTestimonials />} />
             </Route>
           </Route>
 

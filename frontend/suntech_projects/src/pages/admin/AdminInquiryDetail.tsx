@@ -19,6 +19,8 @@ import {
   LEAD_STATUSES,
   LEAD_STATUS_LABELS,
   USER_TYPE_LABELS,
+  batteryTypeLabel,
+  goalLabel,
 } from "../../types/admin";
 import type { LeadStatus } from "../../types/admin";
 import {
@@ -172,6 +174,57 @@ export function AdminInquiryDetail() {
             <dd className={`mt-1 ${FIELD_CLASS}`}>{formatSystemSize(lead.system_size_kw)}</dd>
           </div>
         </dl>
+
+        {/* Existing-system details — upgrade inquiries only */}
+        {lead.user_type === "upgrade" && (
+          <div className="border-t border-ink-900/10 px-6 py-5">
+            <h2 className={LABEL_CLASS}>Existing system</h2>
+            <dl className="mt-4 grid gap-x-8 gap-y-5 sm:grid-cols-2">
+              <div className="sm:col-span-2">
+                <dt className={LABEL_CLASS}>Improvement goals</dt>
+                <dd className="mt-2 flex flex-wrap gap-2">
+                  {(lead.improvement_goals ?? []).length === 0 ? (
+                    <span className={`${FIELD_CLASS} text-ink-600`}>None recorded</span>
+                  ) : (
+                    (lead.improvement_goals ?? []).map((goal) => (
+                      <span
+                        key={goal}
+                        className="inline-block rounded-md border border-sky-300 bg-sky-50 px-2 py-0.5 text-xs font-semibold text-sky-900"
+                      >
+                        {goalLabel(goal)}
+                      </span>
+                    ))
+                  )}
+                </dd>
+              </div>
+              <div>
+                <dt className={LABEL_CLASS}>Existing inverter</dt>
+                <dd className={`mt-1 ${FIELD_CLASS}`}>
+                  {lead.existing_inverter_kw === null
+                    ? "Not sure"
+                    : `${formatSystemSize(lead.existing_inverter_kw)}`}
+                </dd>
+              </div>
+              <div>
+                <dt className={LABEL_CLASS}>Existing battery</dt>
+                <dd className={`mt-1 ${FIELD_CLASS}`}>
+                  {batteryTypeLabel(lead.existing_battery_type)}
+                  {lead.existing_battery_capacity
+                    ? ` · ${lead.existing_battery_capacity}`
+                    : ""}
+                </dd>
+              </div>
+              {lead.existing_system_notes && (
+                <div className="sm:col-span-2">
+                  <dt className={LABEL_CLASS}>System description</dt>
+                  <dd className="mt-2 whitespace-pre-line rounded-lg border border-ink-900/10 bg-sand-100 px-4 py-3 text-sm leading-relaxed text-ink-900">
+                    {lead.existing_system_notes}
+                  </dd>
+                </div>
+              )}
+            </dl>
+          </div>
+        )}
 
         {/* Status update */}
         <div className="border-t border-ink-900/10 px-6 py-5">

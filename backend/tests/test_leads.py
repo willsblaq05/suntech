@@ -91,6 +91,117 @@ def test_budget_range_is_an_enum(client):
     assert client.post("/api/v1/leads/", json={**base, "budget_range": "high"}).status_code == 201
 
 
+def test_upgrade_inquiry_with_system_details(client):
+    """The upgrade category stores goals and existing-system specifics."""
+    response = client.post(
+        "/api/v1/leads/",
+        json={
+            "name": "Blessing Ude",
+            "phone": "+2348023456789",
+            "user_type": "upgrade",
+            "city": "Independence Layout",
+            "budget_range": "medium",
+            "improvement_goals": ["batteries", "backup"],
+            "existing_inverter_kw": 5,
+            "existing_battery_type": "tubular",
+            "existing_battery_capacity": "100 Ah",
+            "existing_system_notes": "5kVA system struggles to run the freezer overnight.",
+        },
+    )
+    assert response.status_code == 201, response.text
+    data = response.json()
+    assert data["user_type"] == "upgrade"
+    assert data["improvement_goals"] == ["batteries", "backup"]
+    assert data["existing_inverter_kw"] == 5
+    assert data["existing_battery_type"] == "tubular"
+    assert data["existing_battery_capacity"] == "100 Ah"
+
+
+def test_upgrade_accepts_unknown_technical_specs(client):
+    """'I don't know' specs are simply omitted — nothing is invented."""
+    response = client.post(
+        "/api/v1/leads/",
+        json={
+            "name": "Halima Sule",
+            "phone": "08054563218",
+            "user_type": "upgrade",
+            "improvement_goals": ["performance"],
+            "existing_system_notes": "Lights flicker and the inverter trips at night.",
+        },
+    )
+    assert response.status_code == 201, response.text
+    data = response.json()
+    assert data["existing_inverter_kw"] is None
+    assert data["existing_battery_type"] is None
+    assert data["existing_battery_capacity"] is None
+
+
+def test_upgrade_requires_goals_and_description(client):
+    base = {"name": "Blessing Ude", "phone": "+2348023456789", "user_type": "upgrade"}
+
+    assert (
+        client.post(
+            "/api/v1/leads/",
+            json={
+                **base,
+                "existing_system_notes": "Panels shaded by a new building wing.",
+            },
+        ).status_code
+        == 422
+    )  # no improvement_goalss  # noqa: E501
+    assert (
+        client.post(
+            "/api/v1/leads/",
+            json={**base, "improvement_goals": ["batteries"]},
+        ).status_code
+        == 422
+    )  # no description
+
+
+def test_upgrade_rejects_unknown_goal(client):
+    response = client.post(
+        "/api/v1/leads/",
+        json={
+            "name": "Blessing Ude",
+            "phone": "+2348023456789",
+            "user_type": "upgrade",
+            "improvement_goals": ["pool"],
+            "existing_system_notes": "Batteries were drained within an hour.",
+        },
+    )
+    assert response.status_code == 422
+
+
+def test_non_upgrade_rejects_upgrade_specific_fields(client):
+    """Existing-system fields on residential/commercial leads are refused,
+    never silently discarded."""
+    response = client.post(
+        "/api/v1/leads/",
+        json={
+            "name": "Chidi Benson",
+            "phone": "+2348012345678",
+            "user_type": "residential",
+            "improvement_goals": ["batteries"],
+        },
+    )
+    assert response.status_code == 422
+
+
+def test_upgrade_rejects_unknown_battery_type(client):
+    response = client.post(
+        "/api/v1/leads/",
+        json={
+            "name": "Blessing Ude",
+            "phone": "+2348023456789",
+            "user_type": "upgrade",
+            "improvement_goals": ["batteries"],
+            "existing_battery_type": "mystery",
+            "existing_system_notes": "Batteries bulging and hot after noon.",
+        },
+    )
+    assert response.status_code == 422
+
+
 def test_list_leads_requires_auth(client):
     """Back-office listing is admin-only."""
     assert client.get("/api/v1/leads/").status_code == 401
