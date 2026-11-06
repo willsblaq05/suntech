@@ -240,7 +240,7 @@ export function AdminInquiryDetail() {
                 setSelectedStatus(event.target.value as LeadStatus);
                 setJustSaved(false);
               }}
-              className="rounded-lg border border-ink-900/15 bg-white px-3 py-2 text-sm text-ink-900 focus:border-forest-600 focus:outline-none focus:ring-2 focus:ring-forest-600/20"
+              className="w-full rounded-lg border border-ink-900/15 bg-white px-3 py-2 text-sm text-ink-900 focus:border-forest-600 focus:outline-none focus:ring-2 focus:ring-forest-600/20 sm:w-auto"
             >
               {LEAD_STATUSES.map((status) => (
                 <option key={status} value={status}>
@@ -252,7 +252,7 @@ export function AdminInquiryDetail() {
               type="button"
               onClick={handleStatusUpdate}
               disabled={savingStatus || activeStatus === lead.status}
-              className="inline-flex items-center justify-center rounded-lg bg-forest-900 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-forest-800 disabled:cursor-not-allowed disabled:opacity-50"
+              className="inline-flex w-full items-center justify-center rounded-lg bg-forest-900 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-forest-800 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
             >
               {savingStatus ? "Saving…" : "Update status"}
             </button>

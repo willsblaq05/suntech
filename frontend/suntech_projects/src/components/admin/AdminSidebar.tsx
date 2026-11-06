@@ -112,7 +112,7 @@ export function AdminSidebar({ open, onClose, onSignOut, isDemo }: AdminSidebarP
               strokeLinecap="round"
               strokeLinejoin="round"
               aria-hidden="true"
-              className="h-4.5 w-4.5 h-[1.15rem] w-[1.15rem]"
+              className="h-[1.15rem] w-[1.15rem]"
             >
               {item.icon}
             </svg>

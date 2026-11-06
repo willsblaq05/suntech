@@ -406,7 +406,7 @@ export function AdminTestimonials() {
             here.
           </p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex w-full items-center gap-3 sm:w-auto">
           <label htmlFor="testimonial-status-filter" className="sr-only">
             Filter by status
           </label>
@@ -416,7 +416,7 @@ export function AdminTestimonials() {
             onChange={(event) =>
               setStatusFilter(event.target.value as "all" | TestimonialStatus)
             }
-            className="rounded-lg border border-ink-900/15 bg-white px-3 py-2 text-sm text-ink-900 focus:border-forest-600 focus:outline-none focus:ring-2 focus:ring-forest-600/20"
+            className="min-w-0 flex-1 rounded-lg border border-ink-900/15 bg-white px-3 py-2 text-sm text-ink-900 focus:border-forest-600 focus:outline-none focus:ring-2 focus:ring-forest-600/20 sm:w-auto sm:flex-none"
           >
             <option value="all">All statuses</option>
             <option value="pending">Pending review</option>
